@@ -1,5 +1,6 @@
 // express server package
 const express = require('express')
+const cors = require('cors')
 
 // module files
 const auth = require('./routes/auth')
@@ -8,6 +9,10 @@ const credentials = require('./credentials')
 
 const port = 5001
 var app = express()
+var options = {
+    origin: 'http://localhost:3000'
+}
+app.use(cors(options))
 
 app.use('/auth', auth)
 

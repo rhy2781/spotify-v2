@@ -74,7 +74,6 @@ router.get('/callback', function (req, res) {
 
 
 router.get('/token', (req, res) => {
-    res.json({ 'token': token.getSpotifyToken() })
+    res.json({'token': token.getSpotifyToken()})
 })
-
 module.exports = router
