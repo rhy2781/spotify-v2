@@ -5,16 +5,15 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-  const [token, setToken] = useState('')
+  const [token, setToken] = useState(' ')
 
   useEffect(() => {
     async function getAuthenticated() {
-      const temp = await fetch(`${process.env.REACT_APP_BACKEND}/auth/token`)
+      await fetch(`${process.env.REACT_APP_BACKEND}/auth/token`)
         .then((response) => response.json())
         .then((response) => {
           if (response.token) {
             setToken(response.token)
-            console.log(response.token)
           }
         })
     }
@@ -25,7 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      {{token} == '' ? <Login /> : <Canvas />}
+      {(token === ' ') ? <Login /> : <Canvas token={token}/>}
     </div>
   );
 }

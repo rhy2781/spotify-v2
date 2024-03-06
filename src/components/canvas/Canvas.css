@@ -1,0 +1,7 @@
+.Top {
+    height: calc(100vh - 60px);
+}
+
+.Bottom {
+    height: 60px;
+}
