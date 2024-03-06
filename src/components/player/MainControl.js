@@ -16,6 +16,17 @@ function MainControl(props) {
         })
     }
 
+    async function toggleRepeat(){
+        await fetch(`${process.env.REACT_APP_BACKEND}/player/repeat`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'state': props.repeat })
+        })
+    }
+
+
     return (
         <div className="MainControl">
             <div className="Controls">
@@ -33,7 +44,7 @@ function MainControl(props) {
                 <div className="SkipForward" onClick={() => { props.player.nextTrack() }}>
                     <IoPlaySkipForwardSharp />
                 </div>
-                <div className="Repeat">
+                <div className="Repeat" onClick={() => toggleRepeat()}>
                     {props.repeat === 0 ? <LuRepeat className="RepeatIcon" /> : props.repeat === 1 ? <LuRepeat className="RepeatIcon" style={{ color: "#1DB954" }} /> : <LuRepeat1 className="RepeatIcon" style={{ color: "#1DB954" }} />}
                 </div>
             </div>
