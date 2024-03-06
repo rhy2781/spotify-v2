@@ -6,6 +6,7 @@ const cors = require('cors')
 const auth = require('./routes/auth')
 const token = require('./token')
 const credentials = require('./credentials')
+const player = require('./routes/playerFunction')
 
 const port = 5001
 var app = express()
@@ -15,6 +16,7 @@ var options = {
 app.use(cors(options))
 
 app.use('/auth', auth)
+app.use('/player', player)
 
 app.get('/test', (req, res) => {
     res.json({

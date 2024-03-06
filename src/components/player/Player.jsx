@@ -82,7 +82,7 @@ function Player(props) {
     return (
         <div className="Player">
             <Current track={currentTrack} />
-            <MainControl player={player} pause={pause} />
+            <MainControl player={player} pause={pause} shuffle={shuffle} />
             <SideControl />
         </div>
     )
