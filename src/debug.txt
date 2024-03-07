@@ -1,0 +1,7 @@
+VM6 spotify-player.js:18 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'postMessage')
+    at e.send (VM6 spotify-player.js:18:17440)
+    at t._sendMessage (VM6 spotify-player.js:18:14117)
+    at VM6 spotify-player.js:18:12659
+e.send	@	VM6 spotify-player.js:18
+t._sendMessage	@	VM6 spotify-player.js:18
+(anonymous)	@	VM6 spotify-player.js:18

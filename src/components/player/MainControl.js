@@ -45,9 +45,9 @@ function MainControl(props) {
             })
     }
 
-    useEffect(() => {
+    // useEffect(() => {
         // setInterval(update, 1000);
-    }, [progressPercentage])
+    // }, [progressPercentage])
 
 
     return (

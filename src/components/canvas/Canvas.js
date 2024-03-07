@@ -41,7 +41,7 @@ function Canvas(props) {
         window.onSpotifyWebPlaybackSDKReady = () => {
             const player = new window.Spotify.Player({
                 name: 'Web Playback Player -' + new Date().getTime(),
-                getOAuthToken: cb => { cb(props.token) },
+                getOAuthToken: cb => cb(props.token),
                 volume: 0.05
             });
 
@@ -75,11 +75,26 @@ function Canvas(props) {
             player.connect();
         };
 
-        // setInterval(progress, 1000); // Update every half second
+
+        // TODO: figure out how to simulate time increment despite polling periodically for the time
+        // setInterval(() => {
+            // const temp = ms
+            // console.log(temp)
+            // console.log(temp + 300)
+            // setMS(temp + 300)
+            // setMS(temp + pause ? 0 : 300)
+        // }, 300)
+
+
+        //     // setInterval(progress, 1000); // Update every half second
         window.addEventListener('beforeunload', () => player.disconnect()); // disconnect player on reload
         window.addEventListener('close', () => player.disconnect()); // disconnect player when window closes
-
-    });
+        return () => {
+            window.removeEventListener('beforeunload', () => player.disconnect());
+            window.removeEventListener('close', () => player.disconnect());
+            player.disconnect();
+        };
+    }, []);
 
 
     if (active) {
