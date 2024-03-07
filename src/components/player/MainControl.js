@@ -45,11 +45,6 @@ function MainControl(props) {
             })
     }
 
-    // useEffect(() => {
-        // setInterval(update, 1000);
-    // }, [progressPercentage])
-
-
     return (
         <div className="MainControl">
             <div className="Controls">
@@ -71,6 +66,9 @@ function MainControl(props) {
                     {props.repeat === 0 ? <LuRepeat className="RepeatIcon" /> : props.repeat === 1 ? <LuRepeat className="RepeatIcon" style={{ color: "#1DB954" }} /> : <LuRepeat1 className="RepeatIcon" style={{ color: "#1DB954" }} />}
                 </div>
             </div>
+
+
+            
             <div className="ProgressBar" onClick={() => update()} style={{ outline: 'white dotted 1px' }}>
                 <div>
                     {progressString}

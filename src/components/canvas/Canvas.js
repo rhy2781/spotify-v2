@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from "react";
 import Player from "../player/Player";
-
+import Temp from "./Temp";
 import './Canvas.css'
+import ProgressBar from "../player/ProgressBar";
 
 
 const track = {
@@ -29,6 +30,7 @@ function Canvas(props) {
     const [volume, setVolume] = useState(0)
 
     const [ms, setMS] = useState(0)
+    const [durationMS, setDurationMS] = useState(0)
 
     // spotify player object integration
     useEffect(() => {
@@ -64,27 +66,20 @@ function Canvas(props) {
                     return;
                 }
                 setCurrentTrack(state.track_window.current_track);
+                console.log(state.track_window.current_track) // TODO 
                 setPause(state.paused);
                 setShuffle(state.shuffle);
                 setRepeat(state.repeat_mode);
+
+
                 setMS(state.position)
+                setDurationMS(state.track_window.current_track.duration_ms)
                 player.getCurrentState().then(state => {
                     (!state) ? setActive(false) : setActive(true)
                 });
             }));
             player.connect();
         };
-
-
-        // TODO: figure out how to simulate time increment despite polling periodically for the time
-        // setInterval(() => {
-            // const temp = ms
-            // console.log(temp)
-            // console.log(temp + 300)
-            // setMS(temp + 300)
-            // setMS(temp + pause ? 0 : 300)
-        // }, 300)
-
 
         //     // setInterval(progress, 1000); // Update every half second
         window.addEventListener('beforeunload', () => player.disconnect()); // disconnect player on reload
@@ -102,9 +97,8 @@ function Canvas(props) {
             <div>
                 <div className="Top">
                     This is the top component
-                    <div>
-                        {ms}
-                    </div>
+                    <Temp ms={ms} pause={pause} />
+                    <ProgressBar ms={ms} pause={pause} durationMS={durationMS} />
                 </div>
                 <div className="Bottom">
                     <Player
