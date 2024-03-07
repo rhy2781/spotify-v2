@@ -1,10 +1,16 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import { IoPlaySharp, IoPauseSharp, IoShuffleSharp, IoPlaySkipBackSharp, IoPlaySkipForwardSharp } from "react-icons/io5"
 import { LuRepeat, LuRepeat1 } from "react-icons/lu"
 
 import './MainControl.css'
 
 function MainControl(props) {
+
+    const [progressString, setProgressString] = useState('temp')
+    const [durationString, setDurationString] = useState('temp')
+    const [durationMS, setDurationMS] = useState(0)
+    const [progressPercentage, setProgressPercentage] = useState(0.0)
+
 
     async function toggleShuffle() {
         await fetch(`${process.env.REACT_APP_BACKEND}/player/shuffle`, {
@@ -16,7 +22,7 @@ function MainControl(props) {
         })
     }
 
-    async function toggleRepeat(){
+    async function toggleRepeat() {
         await fetch(`${process.env.REACT_APP_BACKEND}/player/repeat`, {
             method: "POST",
             headers: {
@@ -25,6 +31,23 @@ function MainControl(props) {
             body: JSON.stringify({ 'state': props.repeat })
         })
     }
+
+    async function update() {
+        await fetch(`${process.env.REACT_APP_BACKEND}/player/update`, {
+            method: 'GET',
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                setProgressString(response.progressString)
+                setDurationString(response.durationString)
+                setDurationMS(response.durationMS)
+                setProgressPercentage(response.progressPercentage)
+            })
+    }
+
+    useEffect(() => {
+        // setInterval(update, 1000);
+    }, [progressPercentage])
 
 
     return (
@@ -48,8 +71,16 @@ function MainControl(props) {
                     {props.repeat === 0 ? <LuRepeat className="RepeatIcon" /> : props.repeat === 1 ? <LuRepeat className="RepeatIcon" style={{ color: "#1DB954" }} /> : <LuRepeat1 className="RepeatIcon" style={{ color: "#1DB954" }} />}
                 </div>
             </div>
-            <div>
-                Temporary
+            <div className="ProgressBar" onClick={() => update()} style={{ outline: 'white dotted 1px' }}>
+                <div>
+                    {progressString}
+                </div>
+                <div>
+                    Temp
+                </div>
+                <div>
+                    {durationString}
+                </div>
             </div>
         </div>
     )

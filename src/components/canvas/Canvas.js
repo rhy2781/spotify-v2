@@ -1,4 +1,4 @@
-import {React, useState, useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import Player from "../player/Player";
 
 import './Canvas.css'
@@ -27,6 +27,8 @@ function Canvas(props) {
     const [shuffle, setShuffle] = useState(false)
     const [repeat, setRepeat] = useState(0)
     const [volume, setVolume] = useState(0)
+
+    const [ms, setMS] = useState(0)
 
     // spotify player object integration
     useEffect(() => {
@@ -65,6 +67,7 @@ function Canvas(props) {
                 setPause(state.paused);
                 setShuffle(state.shuffle);
                 setRepeat(state.repeat_mode);
+                setMS(state.position)
                 player.getCurrentState().then(state => {
                     (!state) ? setActive(false) : setActive(true)
                 });
@@ -76,18 +79,21 @@ function Canvas(props) {
         window.addEventListener('beforeunload', () => player.disconnect()); // disconnect player on reload
         window.addEventListener('close', () => player.disconnect()); // disconnect player when window closes
 
-    }, [props.token]);
+    });
 
 
-    if(active){
+    if (active) {
         return (
             <div>
                 <div className="Top">
                     This is the top component
+                    <div>
+                        {ms}
+                    </div>
                 </div>
                 <div className="Bottom">
-                    <Player 
-                        token={props.token} 
+                    <Player
+                        token={props.token}
                         track={currentTrack}
                         player={player}
                         pause={pause}
@@ -99,7 +105,7 @@ function Canvas(props) {
             </div>
         )
     }
-    else{
+    else {
         return (
             <div>
                 Please transfer playback to the Web SDK

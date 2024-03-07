@@ -34,3 +34,8 @@
     padding: 1%;
     border-radius: 50%;
 }
+
+.ProgressBar{
+    display: flex;
+    flex-direction: row;
+}
