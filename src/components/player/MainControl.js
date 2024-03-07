@@ -3,6 +3,7 @@ import { IoPlaySharp, IoPauseSharp, IoShuffleSharp, IoPlaySkipBackSharp, IoPlayS
 import { LuRepeat, LuRepeat1 } from "react-icons/lu"
 
 import './MainControl.css'
+import ProgressBar from "./ProgressBar";
 
 function MainControl(props) {
 
@@ -66,20 +67,12 @@ function MainControl(props) {
                     {props.repeat === 0 ? <LuRepeat className="RepeatIcon" /> : props.repeat === 1 ? <LuRepeat className="RepeatIcon" style={{ color: "#1DB954" }} /> : <LuRepeat1 className="RepeatIcon" style={{ color: "#1DB954" }} />}
                 </div>
             </div>
+            < ProgressBar
+                player={props.player}
+                pause={props.pause}
+                durationMS={props.durationMS}
+                ms={props.ms} />
 
-
-            
-            <div className="ProgressBar" onClick={() => update()} style={{ outline: 'white dotted 1px' }}>
-                <div>
-                    {progressString}
-                </div>
-                <div>
-                    Temp
-                </div>
-                <div>
-                    {durationString}
-                </div>
-            </div>
         </div>
     )
 }

@@ -98,7 +98,6 @@ function Canvas(props) {
                 <div className="Top">
                     This is the top component
                     <Temp ms={ms} pause={pause} />
-                    <ProgressBar ms={ms} pause={pause} durationMS={durationMS} />
                 </div>
                 <div className="Bottom">
                     <Player
@@ -109,6 +108,8 @@ function Canvas(props) {
                         shuffle={shuffle}
                         repeat={repeat}
                         volume={volume}
+                        ms={ms}
+                        durationMS={durationMS}
                     />
                 </div>
             </div>

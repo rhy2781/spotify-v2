@@ -1,4 +1,5 @@
 import { React, useEffect, useState } from "react"
+import './ProgressBar.css'
 
 function ProgressBar(props) {
     const [progress, setProgress] = useState(props.ms)
@@ -35,21 +36,28 @@ function ProgressBar(props) {
         setDurationString(`${durationMin}:${durationSec.toString().padStart(2, '0')}`)
     }, [props.durationMS])
 
+    function handleSeek(i) {
+        const seek_to = Math.floor(props.durationMS * i);
+        props.player.togglePlay();
+        props.player.seek(seek_to);
+        setProgressPercentage(seek_to / props.durationMS);
+        props.player.togglePlay();
+    }
+
     return (
-        <div>
+        <div className="ProgressBar">
             <div>
                 {progressString}
             </div>
-            <div className="SliderEncased" style={{ width: "100vw" }}>
+            <div className="SliderEncased">
                 <input
-                    style={{ width: "100vw" }}
                     className="SliderInput"
                     type="range"
                     min={0}
                     max={1}
                     step={"any"}
                     value={progressPercentage}
-                // onChange={event => handleSeek(event.target.valueAsNumber)}
+                    onChange={event => handleSeek(event.target.valueAsNumber)}
                 />
             </div>
             <div>

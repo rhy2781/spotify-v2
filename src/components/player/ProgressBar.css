@@ -1,0 +1,13 @@
+.ProgressBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.SliderInput {
+    width: 100%;
+}
+
+.SliderEncased {
+    width: 80%;
+}

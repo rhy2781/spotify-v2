@@ -11,7 +11,14 @@ function Player(props) {
     return (
         <div className="Player">
             <Current track={props.currentTrack} />
-            <MainControl player={props.player} pause={props.pause} shuffle={props.shuffle} repeat={props.repeat}/>
+            <MainControl
+                player={props.player}
+                pause={props.pause}
+                shuffle={props.shuffle}
+                repeat={props.repeat}
+                durationMS={props.durationMS}
+                ms={props.ms}
+            />
             <SideControl />
         </div>
     )
