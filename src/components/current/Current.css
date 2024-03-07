@@ -1,0 +1,40 @@
+.Current {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5%;
+    outline: red dotted 1px;
+}
+
+.CurrentImageContainer {
+    padding-inline: 1%;
+}
+
+.CurrentImage {
+    height: 100%;
+    outline: blue dotted 1px;
+}
+
+.CurrentDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+
+    outline: red dotted 1px;
+}
+
+.CurrentTrack {
+    outline: red dotted 1px;
+    font-size: 20px;
+}
+
+.CurrentArtists {
+    display: flex;
+    flex-direction: row;
+}
+
+.Artist {
+    padding-right: 1%;
+    outline: red dotted 1px;
+}

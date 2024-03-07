@@ -1,27 +1,18 @@
 .MainControl {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-
-
-    outline: green dotted 2px;
-}
-
-.Controls {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding: 1%;
 }
 
+
 .Play,
 .SkipBackward,
 .SkipForward,
 .Shuffle,
 .Repeat {
-    padding-inline: 2.5%;
-    outline: blue dotted 1px;
-    font-size: 20px;
+    padding-inline: 2%;
+    font-size: 25px;
 }
 
 .PlayButton {
@@ -35,7 +26,7 @@
     border-radius: 50%;
 }
 
-.ProgressBar{
+.ProgressBar {
     display: flex;
     flex-direction: row;
 }

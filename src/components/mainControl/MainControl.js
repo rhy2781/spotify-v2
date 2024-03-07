@@ -3,7 +3,7 @@ import { IoPlaySharp, IoPauseSharp, IoShuffleSharp, IoPlaySkipBackSharp, IoPlayS
 import { LuRepeat, LuRepeat1 } from "react-icons/lu"
 
 import './MainControl.css'
-import ProgressBar from "./ProgressBar";
+import ProgressBar from "../progressBar/ProgressBar";
 
 function MainControl(props) {
 
@@ -48,31 +48,23 @@ function MainControl(props) {
 
     return (
         <div className="MainControl">
-            <div className="Controls">
-                <div className="Shuffle" onClick={() => toggleShuffle()} >
-                    {props.shuffle ? <IoShuffleSharp /> : <IoShuffleSharp style={{ color: "#1DB954" }} />}
-                </div>
-                <div className="SkipBackward" onClick={() => { props.player.previousTrack() }}>
-                    <IoPlaySkipBackSharp />
-                </div>
-                <div className="Play" onClick={() => { props.player.togglePlay() }}>
-                    <div className="PlayButton">
-                        {(props.pause) ? <IoPlaySharp /> : <IoPauseSharp />}
-                    </div>
-                </div>
-                <div className="SkipForward" onClick={() => { props.player.nextTrack() }}>
-                    <IoPlaySkipForwardSharp />
-                </div>
-                <div className="Repeat" onClick={() => toggleRepeat()}>
-                    {props.repeat === 0 ? <LuRepeat className="RepeatIcon" /> : props.repeat === 1 ? <LuRepeat className="RepeatIcon" style={{ color: "#1DB954" }} /> : <LuRepeat1 className="RepeatIcon" style={{ color: "#1DB954" }} />}
+            <div className="Shuffle" onClick={() => toggleShuffle()} >
+                {props.shuffle ? <IoShuffleSharp /> : <IoShuffleSharp style={{ color: "#1DB954" }} />}
+            </div>
+            <div className="SkipBackward" onClick={() => { props.player.previousTrack() }}>
+                <IoPlaySkipBackSharp />
+            </div>
+            <div className="Play" onClick={() => { props.player.togglePlay() }}>
+                <div className="PlayButton">
+                    {(props.pause) ? <IoPlaySharp /> : <IoPauseSharp />}
                 </div>
             </div>
-            < ProgressBar
-                player={props.player}
-                pause={props.pause}
-                durationMS={props.durationMS}
-                ms={props.ms} />
-
+            <div className="SkipForward" onClick={() => { props.player.nextTrack() }}>
+                <IoPlaySkipForwardSharp />
+            </div>
+            <div className="Repeat" onClick={() => toggleRepeat()}>
+                {props.repeat === 0 ? <LuRepeat className="RepeatIcon" /> : props.repeat === 1 ? <LuRepeat className="RepeatIcon" style={{ color: "#1DB954" }} /> : <LuRepeat1 className="RepeatIcon" style={{ color: "#1DB954" }} />}
+            </div>
         </div>
     )
 }

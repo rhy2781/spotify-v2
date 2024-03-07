@@ -1,9 +1,16 @@
 .Top {
-    height: calc(100vh - 60px);
+    height: calc(100vh - 70px);
 }
 
-.Bottom {
-    height: 60;
+.Player {
+    height: 70px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    outline: white dotted 1px;
+    /* padding: 0.5%; */
+}
+
+.Controls {
+    width: 100%;
 }

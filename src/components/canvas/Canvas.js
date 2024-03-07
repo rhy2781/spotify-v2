@@ -1,8 +1,10 @@
 import { React, useState, useEffect } from "react";
-import Player from "../player/Player";
-import Temp from "./Temp";
+
 import './Canvas.css'
-import ProgressBar from "../player/ProgressBar";
+import ProgressBar from "../progressBar/ProgressBar";
+import Current from "../current/Current";
+import MainControl from "../mainControl/MainControl";
+import SideControl from "../sideControl/SideControl";
 
 
 const track = {
@@ -97,20 +99,28 @@ function Canvas(props) {
             <div>
                 <div className="Top">
                     This is the top component
-                    <Temp ms={ms} pause={pause} />
                 </div>
-                <div className="Bottom">
-                    <Player
-                        token={props.token}
+                <div className="Player">
+                    <Current
                         track={currentTrack}
-                        player={player}
-                        pause={pause}
-                        shuffle={shuffle}
-                        repeat={repeat}
-                        volume={volume}
-                        ms={ms}
-                        durationMS={durationMS}
                     />
+                    <div className="Controls">
+                        <MainControl
+                            player={player}
+                            pause={pause}
+                            shuffle={shuffle}
+                            repeat={repeat}
+                            durationMS={durationMS}
+                            ms={ms}
+                        />
+                        < ProgressBar
+                            player={player}
+                            pause={pause}
+                            durationMS={durationMS}
+                            ms={ms}
+                        />
+                    </div>
+                    <SideControl />
                 </div>
             </div>
         )
