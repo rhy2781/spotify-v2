@@ -22,7 +22,7 @@ function Current(props) {
             <div className="CurrentImageContainer">
                 <img
                     src={props.track.album.images[0].url}
-                    className="CurrentImage"
+                    // className="CurrentImage"
                 />
             </div>
             <div className="CurrentDetails">
@@ -32,7 +32,7 @@ function Current(props) {
                 <div className="CurrentArtists">
                     {artists}
                 </div>
-            </div>
+            </div> 
         </div>
     )
 }

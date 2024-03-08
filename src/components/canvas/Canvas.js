@@ -104,7 +104,7 @@ function Canvas(props) {
                     <Current
                         track={currentTrack}
                     />
-                    <div className="Controls">
+                    {/* <div className="Controls">
                         <MainControl
                             player={player}
                             pause={pause}
@@ -120,7 +120,7 @@ function Canvas(props) {
                             ms={ms}
                         />
                     </div>
-                    <SideControl />
+                    <SideControl /> */}
                 </div>
             </div>
         )

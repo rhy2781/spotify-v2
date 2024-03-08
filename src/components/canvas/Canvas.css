@@ -1,16 +1,20 @@
 .Top {
-    height: calc(100vh - 70px);
+    /* height: calc(100vh - 80px); */
+    height: 100px;
 }
 
 .Player {
-    height: 70px;
+    height: fit-content;
+    /* height: auto; */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    outline: white dotted 1px;
-    /* padding: 0.5%; */
+    /* outline: aqua dotted 1px; */
+    padding: 0.5%;
 }
 
+.Bottom {}
+
 .Controls {
-    width: 100%;
+    width: 150%;
 }
