@@ -1,9 +1,9 @@
 .Top {
-    height: calc(100vh - 80px - 2vmin);
+    height: calc(100vh - 70px - 2vmin);
 }
 
 .Player {
-    height: 80px;
+    height: 70px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
