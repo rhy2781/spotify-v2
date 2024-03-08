@@ -1,17 +1,10 @@
-import { React, useState, useEffect } from "react";
+import { React } from "react";
 import { IoPlaySharp, IoPauseSharp, IoShuffleSharp, IoPlaySkipBackSharp, IoPlaySkipForwardSharp } from "react-icons/io5"
 import { LuRepeat, LuRepeat1 } from "react-icons/lu"
 
 import './MainControl.css'
-import ProgressBar from "../progressBar/ProgressBar";
 
 function MainControl(props) {
-
-    const [progressString, setProgressString] = useState('temp')
-    const [durationString, setDurationString] = useState('temp')
-    const [durationMS, setDurationMS] = useState(0)
-    const [progressPercentage, setProgressPercentage] = useState(0.0)
-
 
     async function toggleShuffle() {
         await fetch(`${process.env.REACT_APP_BACKEND}/player/shuffle`, {
@@ -31,19 +24,6 @@ function MainControl(props) {
             },
             body: JSON.stringify({ 'state': props.repeat })
         })
-    }
-
-    async function update() {
-        await fetch(`${process.env.REACT_APP_BACKEND}/player/update`, {
-            method: 'GET',
-        })
-            .then((response) => response.json())
-            .then((response) => {
-                setProgressString(response.progressString)
-                setDurationString(response.durationString)
-                setDurationMS(response.durationMS)
-                setProgressPercentage(response.progressPercentage)
-            })
     }
 
     return (

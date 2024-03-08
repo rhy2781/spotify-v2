@@ -28,7 +28,7 @@ function ProgressBar(props) {
         const progressSec = Math.floor((progress / 1000) % 60)
         setProgressPercentage(progress / props.durationMS)
         setProgressString(`${progressMin}:${progressSec.toString().padStart(2, '0')}`)
-    }, [progress])
+    }, [progress, props.durationMS])
 
     useEffect(() => {
         const durationMin = Math.floor((props.durationMS / 1000) / 60)

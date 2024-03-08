@@ -4,10 +4,12 @@
     flex-direction: row;
     padding: 0.5%;
     outline: red dotted 1px;
+    white-space: nowrap;
+    overflow-x: hidden;
 }
 
 .CurrentImageContainer {
-    padding-inline: 1%;
+    padding-right: 1%;
 }
 
 .CurrentImage {
@@ -16,18 +18,12 @@
 }
 
 .CurrentDetails {
-    width: 100%;
     display: flex;
     flex-direction: column;
     text-align: left;
-
-    outline: red dotted 1px;
 }
 
-.CurrentTrack {
-    outline: red dotted 1px;
-    font-size: 20px;
-}
+.CurrentTrack {}
 
 .CurrentArtists {
     display: flex;
@@ -36,5 +32,4 @@
 
 .Artist {
     padding-right: 1%;
-    outline: red dotted 1px;
 }

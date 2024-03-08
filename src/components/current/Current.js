@@ -7,9 +7,9 @@ function Current(props) {
     const [artists, setArtists] = useState([])
 
     useEffect(() => {
-        const temp = props.track.artists.map((element, index) => (
+        const temp = props.track.artists.map((artist, index, arr) => (
             <div key={index} className="Artist">
-                {element.name},
+                {(index === arr.length - 1) ? ` ${artist.name}` : `${artist.name}, `}
             </div>
         ));
 
