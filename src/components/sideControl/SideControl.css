@@ -1,4 +1,28 @@
 .SideControl {
     width: 100%;
     outline: gold dotted 1px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    border-radius: 15px;
+    height: 6px;
+    background: #ccc;
+}
+
+/* Thumb: webkit */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 15px;
+    width: 15px;
+    background-color: var(--green);
+    border-radius: 50%;
+
+    transition: .2s ease-in-out;
 }

@@ -22,6 +22,7 @@ function Current(props) {
             <div className="CurrentImageContainer">
                 <img
                     src={props.track.album.images[0].url}
+                    alt={props.track.uri}
                 />
             </div>
             <div className="CurrentDetails">

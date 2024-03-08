@@ -46,10 +46,10 @@ function Canvas(props) {
             const player = new window.Spotify.Player({
                 name: 'Web Playback Player -' + new Date().getTime(),
                 getOAuthToken: cb => cb(props.token),
-                volume: 0.05
+                volume: 0.5
             });
 
-            setVolume(0.05);
+            setVolume(0.5);
             setPlayer(player);
 
             // Ready
@@ -68,15 +68,14 @@ function Canvas(props) {
                     return;
                 }
                 setCurrentTrack(state.track_window.current_track);
-                console.log(state.track_window.current_track) // TODO 
                 setPause(state.paused);
                 setShuffle(state.shuffle);
                 setRepeat(state.repeat_mode);
-
+                player.getVolume().then((v) => setVolume(v))
 
                 setMS(state.position)
                 setDurationMS(state.track_window.current_track.duration_ms)
-                player.getCurrentState().then(state => {
+                player.getCurrentState().then((state) => {
                     (!state) ? setActive(false) : setActive(true)
                 });
             }));
@@ -91,7 +90,8 @@ function Canvas(props) {
             window.removeEventListener('close', () => player.disconnect());
             player.disconnect();
         };
-    }, []);
+// eslint-disable-next-line
+    }, [props.token]);
 
 
     if (active) {
@@ -120,7 +120,11 @@ function Canvas(props) {
                             ms={ms}
                         />
                     </div>
-                    <SideControl />
+                    <SideControl
+                        player={player}
+                        volume={volume}
+                        setVolume={setVolume}
+                    />
                 </div>
             </div>
         )

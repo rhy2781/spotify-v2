@@ -5,3 +5,5 @@ VM6 spotify-player.js:18 Uncaught (in promise) TypeError: Cannot read properties
 e.send	@	VM6 spotify-player.js:18
 t._sendMessage	@	VM6 spotify-player.js:18
 (anonymous)	@	VM6 spotify-player.js:18
+
+<input class="VolumeInputSlider" type="range" min="0" max="1" step="any" value="0.415926082663281" style="background: linear-gradient(to right, rgb(255, 85, 0) 0.415926%, rgb(204, 204, 204) 0.415926%);">

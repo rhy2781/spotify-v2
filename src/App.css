@@ -1,8 +1,10 @@
-:root{
+:root {
   --green: #44c767;
   --black: #000000;
   --white: #ffffff;
+  --gray: #535353;
 }
+
 .App {
   text-align: center;
   height: 100vh;
