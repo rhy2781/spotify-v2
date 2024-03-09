@@ -31,7 +31,7 @@ function Canvas(props) {
     const [repeat, setRepeat] = useState(0)
     const [volume, setVolume] = useState(0)
 
-    const [ms, setMS] = useState(0)
+    const [progressMS, setProgressMS] = useState(0)
     const [durationMS, setDurationMS] = useState(0)
 
     // spotify player object integration
@@ -73,7 +73,7 @@ function Canvas(props) {
                 setRepeat(state.repeat_mode);
                 player.getVolume().then((v) => setVolume(v))
 
-                setMS(state.position)
+                setProgressMS(state.position)
                 setDurationMS(state.track_window.current_track.duration_ms)
                 player.getCurrentState().then((state) => {
                     (!state) ? setActive(false) : setActive(true)
@@ -90,9 +90,8 @@ function Canvas(props) {
             window.removeEventListener('close', () => player.disconnect());
             player.disconnect();
         };
-// eslint-disable-next-line
+        // eslint-disable-next-line
     }, [props.token]);
-
 
     if (active) {
         return (
@@ -111,13 +110,13 @@ function Canvas(props) {
                             shuffle={shuffle}
                             repeat={repeat}
                             durationMS={durationMS}
-                            ms={ms}
+                            ms={progressMS}
                         />
                         < ProgressBar
                             player={player}
                             pause={pause}
                             durationMS={durationMS}
-                            ms={ms}
+                            ms={progressMS}
                         />
                     </div>
                     <SideControl
