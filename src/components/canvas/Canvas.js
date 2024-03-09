@@ -24,7 +24,6 @@ function Canvas(props) {
 
     const [player, setPlayer] = useState(undefined)
     const [active, setActive] = useState(false)
-    const [device, setDevice] = useState("")
 
     const [pause, setPause] = useState(false)
     const [currentTrack, setCurrentTrack] = useState(track)
@@ -59,13 +58,11 @@ function Canvas(props) {
             // Ready
             player.addListener('ready', ({ device_id }) => {
                 console.log('Ready with Device ID', device_id);
-                setDevice(device_id)
             });
 
             // Not Ready
             player.addListener('not_ready', ({ device_id }) => {
                 console.log('Device ID has gone offline', device_id);
-                setDevice("")
             });
 
             // Player State Change Listener
@@ -91,18 +88,35 @@ function Canvas(props) {
         //     // setInterval(progress, 1000); // Update every half second
         window.addEventListener('beforeunload', () => player.disconnect()); // disconnect player on reload
         window.addEventListener('close', () => player.disconnect()); // disconnect player when window closes
+
         return () => {
             window.removeEventListener('beforeunload', () => player.disconnect());
             window.removeEventListener('close', () => player.disconnect());
             player.disconnect();
         };
         // eslint-disable-next-line
-    }, [props.token]);
+    }, []);
+
+
+    // async function refresh() {
+    //     await fetch(`${process.env.REACT_APP_BACKEND}/auth/refresh`, {
+    //         method: 'GET'
+    //     })
+    //     .then((response) => response.json())
+    //     .then((response) => {
+    //         console.log(response)
+    //         props.setToken(response.access_token)
+    //     })
+    // }
+
 
     if (active) {
         return (
             <div>
                 <div className="Top">
+                    <div>
+                        current access token {props.token}
+                    </div>
                     This is the top component
                 </div>
                 <div className="Player">
@@ -143,9 +157,6 @@ function Canvas(props) {
                 <a className="PlaybackButton" href={`${process.env.REACT_APP_BACKEND}/test`}>
                     Click
                 </a>
-                <div>
-                    {device}
-                </div>
             </div >
         )
     }
