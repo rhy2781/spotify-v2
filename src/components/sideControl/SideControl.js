@@ -24,12 +24,40 @@ function SideControl(props) {
             setIcon(IoVolumeHighSharp)
         }
 
-        // style for volume input range
-        const sliderEl = document.querySelector(".VolumeInputSlider")
-        const temp = (sliderEl.valueAsNumber / 1) * 100
-        sliderEl.style.background = `linear-gradient(to right, #44c767 ${temp}%, #ccc ${temp}%`
+        /* style for volume input range */
+        // slider remains green during input
+        const slider = document.querySelector(".VolumeInputSlider")
+        const handleSliderInput = (event) => {
+            var temp = (event.target.valueAsNumber / 1) * 100
+            slider.style.background = `linear-gradient(to right, #44c767 ${temp}%, #535353 ${temp}%)`
+        };
+        slider.addEventListener("input", handleSliderInput)
+
+        // slider turns green when mouse over
+        const container = document.querySelector(".VolumeInputContainer")
+        container.addEventListener("mouseenter", () => {
+            var temp = (slider.valueAsNumber / 1) * 100
+            slider.style.background = `linear-gradient(to right, #44c767 ${temp}%, #535353 ${temp}%)`
+        })
+
+        //slider turns white when mouse leave
+        container.addEventListener("mouseleave", () => {
+            var temp = (slider.valueAsNumber / 1) * 100
+            slider.style.background = `linear-gradient(to right, #ffffff ${temp}%, #535353 ${temp}%)`
+        })
+
+        return () => {
+            slider.removeEventListener("input", handleSliderInput);
+        }
 
     }, [props.volume])
+
+    useEffect(() => {
+        const slider = document.querySelector(".VolumeInputSlider")
+        const temp = slider.valueAsNumber * 100
+        slider.style.background = `linear-gradient(to right, #ffffff ${temp}%, #535353 ${temp}%)`;
+    }, [])
+
 
     const handleVolume = (i) => {
         props.setVolume(i)
@@ -40,17 +68,20 @@ function SideControl(props) {
     return (
         <div className="SideControl">
             {icon}
-            <input
-                className="VolumeInputSlider"
-                type="range"
-                min={0}
-                max={1}
-                step={"any"}
-                value={props.volume}
-                onChange={event => {
-                    handleVolume(event.target.valueAsNumber)
-                }}
-            />
+            <div className="VolumeInputContainer">
+                <input
+                    className="VolumeInputSlider"
+                    type="range"
+                    min={0}
+                    max={1}
+                    step={"any"}
+                    value={props.volume}
+                    onChange={event => {
+                        handleVolume(event.target.valueAsNumber)
+                    }}
+                />
+            </div>
+
             {/* <div className="VolumeContainer">
                 <div className="VolumeSlider" style={{ width: `${props.volume * 100}%`}}>
                 </div>

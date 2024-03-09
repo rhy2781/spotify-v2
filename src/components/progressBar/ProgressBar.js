@@ -44,6 +44,11 @@ function ProgressBar(props) {
         props.player.togglePlay();
     }
 
+    // adjusting css for progress slider
+    // const sliderEl = document.querySelector(".ProgressInputSlider")
+    // const temp = (sliderEl.valueAsNumber / 1) * 100
+    // sliderEl.style.background = `linear-gradient(to right, #ffffff ${temp}%, #535353 ${temp}%`
+
     return (
         <div className="ProgressBar">
             <div>
@@ -51,7 +56,7 @@ function ProgressBar(props) {
             </div>
             <div className="SliderEncased">
                 <input
-                    className="SliderInput"
+                    className="ProgressInputSlider"
                     type="range"
                     min={0}
                     max={1}
