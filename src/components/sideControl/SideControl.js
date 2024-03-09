@@ -5,49 +5,55 @@ import './SideControl.css'
 
 function SideControl(props) {
 
-    const [icon, setIcon] = useState(undefined)
+    const [icon, setIcon] = useState(null)
 
     useEffect(() => {
         if (props.volume === 0) {
-            setIcon(IoVolumeMuteSharp)
+            setIcon(<IoVolumeMuteSharp />)
         }
         else if (props.volume < 0.25) {
-            setIcon(IoVolumeOffSharp)
+            setIcon(<IoVolumeOffSharp />)
         }
         else if (props.volume < 0.50) {
-            setIcon(IoVolumeLowSharp)
+            setIcon(<IoVolumeLowSharp />)
         }
         else if (props.volume < 0.75) {
-            setIcon(IoVolumeMediumSharp)
+            setIcon(<IoVolumeMediumSharp />)
         }
         else {
-            setIcon(IoVolumeHighSharp)
+            setIcon(<IoVolumeHighSharp />)
         }
 
         /* style for volume input range */
-        // slider remains green during input
+
         const slider = document.querySelector(".VolumeInputSlider")
+        // slider remains green during input
         const handleSliderInput = (event) => {
             var temp = (event.target.valueAsNumber / 1) * 100
             slider.style.background = `linear-gradient(to right, #44c767 ${temp}%, #535353 ${temp}%)`
         };
         slider.addEventListener("input", handleSliderInput)
 
-        // slider turns green when mouse over
         const container = document.querySelector(".VolumeInputContainer")
-        container.addEventListener("mouseenter", () => {
+        // slider turns green when mouse over
+        const handleContainerMouseEnter = () => {
             var temp = (slider.valueAsNumber / 1) * 100
             slider.style.background = `linear-gradient(to right, #44c767 ${temp}%, #535353 ${temp}%)`
-        })
+        }
+        container.addEventListener("mouseenter", handleContainerMouseEnter)
+
 
         //slider turns white when mouse leave
-        container.addEventListener("mouseleave", () => {
+        const handleContainerMouseLeave = () => {
             var temp = (slider.valueAsNumber / 1) * 100
             slider.style.background = `linear-gradient(to right, #ffffff ${temp}%, #535353 ${temp}%)`
-        })
+        }
+        container.addEventListener("mouseleave", handleContainerMouseLeave)
 
         return () => {
             slider.removeEventListener("input", handleSliderInput);
+            slider.removeEventListener("mouseenter", handleContainerMouseEnter);
+            slider.removeEventListener("mouseleave", handleContainerMouseLeave);
         }
 
     }, [props.volume])
@@ -67,7 +73,9 @@ function SideControl(props) {
 
     return (
         <div className="SideControl">
-            {icon}
+            <div>
+                {icon}
+            </div>
             <div className="VolumeInputContainer">
                 <input
                     className="VolumeInputSlider"
@@ -81,11 +89,6 @@ function SideControl(props) {
                     }}
                 />
             </div>
-
-            {/* <div className="VolumeContainer">
-                <div className="VolumeSlider" style={{ width: `${props.volume * 100}%`}}>
-                </div>
-            </div> */}
         </div>
     )
 }
