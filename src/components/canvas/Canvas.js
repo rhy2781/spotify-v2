@@ -24,6 +24,7 @@ function Canvas(props) {
 
     const [player, setPlayer] = useState(undefined)
     const [active, setActive] = useState(false)
+    const [device, setDevice] = useState("")
 
     const [pause, setPause] = useState(false)
     const [currentTrack, setCurrentTrack] = useState(track)
@@ -33,6 +34,9 @@ function Canvas(props) {
 
     const [progressMS, setProgressMS] = useState(0)
     const [durationMS, setDurationMS] = useState(0)
+
+
+
 
     // spotify player object integration
     useEffect(() => {
@@ -55,11 +59,13 @@ function Canvas(props) {
             // Ready
             player.addListener('ready', ({ device_id }) => {
                 console.log('Ready with Device ID', device_id);
+                setDevice(device_id)
             });
 
             // Not Ready
             player.addListener('not_ready', ({ device_id }) => {
                 console.log('Device ID has gone offline', device_id);
+                setDevice("")
             });
 
             // Player State Change Listener
@@ -130,9 +136,17 @@ function Canvas(props) {
     }
     else {
         return (
-            <div>
-                Please transfer playback to the Web SDK
-            </div>
+            <div className="NoPlayback">
+                <div>
+                    Please transfer playback to the Web SDK
+                </div>
+                <a className="PlaybackButton" href={`${process.env.REACT_APP_BACKEND}/test`}>
+                    Click
+                </a>
+                <div>
+                    {device}
+                </div>
+            </div >
         )
     }
 }

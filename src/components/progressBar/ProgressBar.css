@@ -4,13 +4,14 @@
   justify-content: space-evenly;
 }
 
-.ProgressInputSliderContainer{
+.ProgressInputSliderContainer {
   width: 100%;
 }
 
-.ProgressInputSlider{
+.ProgressInputSlider {
   width: 100%;
-  height: 5px;}
+  height: 5px;
+}
 
 .ProgressInputSliderContainer {
   width: 70%;
